@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Haha bấm vô đi 🤑 </title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      width: 320px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #ff4d6d;
+    }
+
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    #yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #no {
+      background: #ccc;
+      position: absolute;
+    }
+
+    .heart {
+      position: absolute;
+      color: red;
+      font-size: 20px;
+      animation: fly 3s linear infinite;
+    }
+
+    @keyframes fly {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-600px); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h1>💌 Tớ thích cậu 💌</h1>
+    <p>Cậu làm người yêu tớ nha?</p>
+    <button id="yes" onclick="yesClick()">Đồng ý 💖</button>
+    <button id="no" onclick="noClick()">Đéo 😡 </button>
+  </div>
+
+  <script>
+    let yesScale = 1;
+    let noScale = 1;
+
+    function noClick() {
+      // Nút đồng ý to ra
+      yesScale += 0.4;
+      document.getElementById("yes").style.transform = `scale(${yesScale})`;
+
+      // Nút không nhỏ lại
+      noScale -= 0.2;
+      if (noScale < 0.3) noScale = 0.3; // không cho biến mất hẳn
+      const noBtn = document.getElementById("no");
+      noBtn.style.transform = `scale(${noScale})`;
+
+      // Nút không chạy lung tung
+      noBtn.style.left = Math.random() * 200 + "px";
+      noBtn.style.top = Math.random() * 150 + "px";
+    }
+
+    function yesClick() {
+      alert("Uầy đáng iu vậy trời 😍!");
+      setInterval(createHeart, 200);
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.bottom = "0px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    }
+  </script>
+
+</body>
+</html>
